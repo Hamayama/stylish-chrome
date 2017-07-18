@@ -521,6 +521,10 @@ function removeAppliesTo(event) {
 
 function removeSection(event) {
 	var section = getSectionForChild(event.target);
+
+	// ***** This check prevents an error when Mozilla Format is imported twice. *****
+	if (section == null) { return; }
+
 	var cm = section.CodeMirror;
 	removeAreaAndSetDirty(section);
 	editors.splice(editors.indexOf(cm), 1);
